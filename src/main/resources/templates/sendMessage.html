@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Mesaj Gönder</title>
+</head>
+<body>
+    <h1>Mesaj Gönder</h1>
+    <form method="post" action="/messages/send">
+        <label for="senderUsername">Gönderen Kullanıcı Adı:</label>
+        <input type="text" id="senderUsername" name="senderUsername" required/><br/><br/>
+
+        <label for="receiverUsername">Alıcı Kullanıcı Adı:</label>
+        <input type="text" id="receiverUsername" name="receiverUsername" required/><br/><br/>
+
+        <label for="content">Mesaj İçeriği:</label>
+        <textarea id="content" name="content" rows="4" cols="50" required></textarea><br/><br/>
+
+        <button type="submit">Gönder</button>
+    </form>
+    <a href="/messages/inbox">Gelen Kutusuna Dön</a>
+</body>
+</html>

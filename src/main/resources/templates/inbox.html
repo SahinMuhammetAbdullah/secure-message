@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gelen Kutusu</title>
+</head>
+<body>
+    <h1>Gelen Kutusu</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Gönderen</th>
+                <th>Mesaj</th>
+                <th>Tarih</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="message : ${messages}">
+                <td th:text="${message.sender.username}">Gönderen</td>
+                <td th:text="${#strings.newString(message.encryptedMessage, 'UTF-8')}">Şifreli Mesaj</td>
+                <td th:text="${message.timestamp}">Tarih</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/messages/send">Yeni Mesaj Gönder</a>
+</body>
+</html>
