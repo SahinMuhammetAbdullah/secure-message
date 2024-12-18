@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,7 +75,7 @@ public class MessageController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String senderUsername = authentication.getName();
 
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy:HH:mm:ss");
 
         // Get sender and receiver users from the database
         User sender = userRepository.findByUsername(senderUsername)
@@ -91,7 +92,7 @@ public class MessageController {
         message.setSender(sender);
         message.setReceiver(receiver);
         message.setEncryptedMessage(encryptedMessage);
-        message.setDateTime(formatter.format(LocalDateTime.now()));
+        message.setDateTime(formatter.format(new Date()));
         messageRepository.save(message);
 
         return "redirect:/messages/inbox";

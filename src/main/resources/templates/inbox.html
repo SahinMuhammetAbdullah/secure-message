@@ -46,7 +46,7 @@
             <td th:text="${decryptedMessages[iterStat.index]}">
               Çözülmüş Mesaj
             </td>
-            <td th:text="${message.timestamp}">Tarih</td>
+            <td th:text="${message.dateTime}">Tarih</td>
             <td>
               <a
                 th:href="@{'/messages/delete/{id}'(id=${message.id})}"
