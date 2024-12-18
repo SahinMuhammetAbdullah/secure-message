@@ -1,6 +1,7 @@
 package com.secmes.secure_message.controller;
 
 import java.security.PublicKey;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -88,7 +89,8 @@ public class MessageController {
         message.setSender(sender);
         message.setReceiver(receiver);
         message.setEncryptedMessage(encryptedMessage);
-        message.setTimestamp(LocalDateTime.now());
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        message.setDateTime(formatter.format(LocalDateTime.now()));
         messageRepository.save(message);
 
         return "redirect:/messages/inbox";

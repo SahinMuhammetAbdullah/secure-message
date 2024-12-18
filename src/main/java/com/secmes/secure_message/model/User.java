@@ -24,8 +24,7 @@ public class User {
 
     // Kullanıcının kaydolma tarihi
     @Column(nullable = false, updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private java.util.Date createdDate;
+    private String createdDate; // Tarih ve saat formatında saklanacak
 
     // Kullanıcı durumu (Aktif/Pasif gibi)
     @Column(nullable = false)
