@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -62,6 +63,7 @@ public class MessageController {
 
         model.addAttribute("messages", messages);
         model.addAttribute("decryptedMessages", decryptedMessages);
+        model.addAttribute("username", username);
         return "inbox";
     }
 
@@ -98,8 +100,14 @@ public class MessageController {
         users.removeIf(
                 user -> user.getUsername().equals(SecurityContextHolder.getContext().getAuthentication().getName()));
         model.addAttribute("users", users);
+        model.addAttribute("username", SecurityContextHolder.getContext().getAuthentication().getName());
 
         return "sendMessage";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteMessage(@PathVariable Long id) {
+        return "redirect:/messages/inbox";
     }
 
     @GetMapping("/sent")
@@ -107,7 +115,6 @@ public class MessageController {
         // Get the logged-in user
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
-        
 
         // Get all messages for the logged-in user
         List<Message> messages = messageRepository.findAllBySenderUsername(username);
@@ -125,6 +132,7 @@ public class MessageController {
         }
         model.addAttribute("messages", messages);
         model.addAttribute("decryptedMessages", decryptedMessages);
+        model.addAttribute("username", username);
         return "sent";
     }
 }
