@@ -1,0 +1,119 @@
+.navbar-container {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.2s;
+}
+
+#navbar-ul {
+    transition: all 0.2s;
+}
+
+#navbar-ul>li {
+    position: relative !important;
+    padding: 10px;
+    transition: all 0.2s;
+
+    a {
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.699);
+        font-size: 1.1rem;
+    }
+
+}
+
+#navbar-ul>li:hover,
+#navbar-ul>li:focus {
+    padding-bottom: 0;
+    transition: all 0.2s;
+
+}
+
+#navbar-ul>li::after {
+    content: "";
+    height: 4px;
+    border-radius: 5px 5px 5px 5px;
+    width: 85%;
+    background-color: #91C8E4;
+    position: absolute;
+    bottom: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s ease-in-out;
+}
+
+#navbar-ul>li:hover::after,
+#navbar-ul>li:focus::after {
+    opacity: 1;
+    transition: all 0.2s;
+}
+
+#navbar-ul>li:hover>a {
+    color: rgb(241, 246, 249);
+    transition: all 0.2s;
+}
+
+body {
+    background-color: #24273a;
+    font-family: "Arial", sans-serif;
+}
+
+.table {
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.table th {
+    background-color: #ed8796;
+    color: rgb(241, 246, 249);
+}
+
+
+.btn-primary {
+    background-color: #ed8796;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #ff677d;
+}
+
+.header {
+    margin-top: 20px;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    color: #333;
+}
+
+.form-container {
+    margin-top: 50px;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.form select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.btn-secondary {
+    background-color: #dc8a78;
+    border: none;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+    text-decoration: none;
+}
+
+.btn-secondary:hover {
+    background-color: #dd7878;
+}
