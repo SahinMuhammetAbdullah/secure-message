@@ -19,5 +19,5 @@ public class Message {
     @Lob
     private String encryptedMessage;
 
-    private LocalDateTime timestamp;
+    private String dateTime;
 }

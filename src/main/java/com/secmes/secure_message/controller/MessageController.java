@@ -1,6 +1,7 @@
 package com.secmes.secure_message.controller;
 
 import java.security.PublicKey;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -73,6 +74,8 @@ public class MessageController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String senderUsername = authentication.getName();
 
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+
         // Get sender and receiver users from the database
         User sender = userRepository.findByUsername(senderUsername)
                 .orElseThrow(() -> new UsernameNotFoundException("Sender not found"));
@@ -88,7 +91,7 @@ public class MessageController {
         message.setSender(sender);
         message.setReceiver(receiver);
         message.setEncryptedMessage(encryptedMessage);
-        message.setTimestamp(LocalDateTime.now());
+        message.setDateTime(formatter.format(LocalDateTime.now()));
         messageRepository.save(message);
 
         return "redirect:/messages/inbox";
