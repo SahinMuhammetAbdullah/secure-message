@@ -1,9 +1,15 @@
 package com.secmes.secure_message.controller;
 
 import java.security.PublicKey;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,31 +39,56 @@ public class MessageController {
 
     @GetMapping("/inbox")
     public String getInbox(Model model) {
-        List<Message> messages = messageRepository.findAll();
+        // Get the logged-in user
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+
+        // Get all messages for the logged-in user
+        List<Message> messages = messageRepository.findAllByReceiverUsername(username);
+        List<String> decryptedMessages = new ArrayList<>();
+
+        for (Message message : messages) {
+            try {
+                String decryptedMessage = rsaService.decryptMessage(
+                        Base64.getEncoder().encodeToString(user.getPrivateKey()),
+                        new String(message.getEncryptedMessage()));
+                System.out.println("decrypted message: " + decryptedMessage);
+                decryptedMessages.add(decryptedMessage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
         model.addAttribute("messages", messages);
         model.addAttribute("decryptedMessages", decryptedMessages);
         model.addAttribute("username", username);
         return "inbox";
     }
 
-    @GetMapping("/send")
-    public String showSendMessagePage() {
-        return "sendMessage";
-    }
-
     @PostMapping("/send")
-    public String sendMessage(@RequestParam String senderUsername, @RequestParam String receiverUsername, @RequestParam String content) throws Exception {
-        User sender = userRepository.findByUsername(senderUsername).orElseThrow();
-        User receiver = userRepository.findByUsername(receiverUsername).orElseThrow();
+    public String sendMessage(@RequestParam String receiverUsername, @RequestParam String content) throws Exception {
+        // Get the logged-in user
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String senderUsername = authentication.getName();
 
-        // Mesajı RSA ile şifreleme
+        // Get sender and receiver users from the database
+        User sender = userRepository.findByUsername(senderUsername)
+                .orElseThrow(() -> new UsernameNotFoundException("Sender not found"));
+        User receiver = userRepository.findByUsername(receiverUsername)
+                .orElseThrow(() -> new UsernameNotFoundException("Receiver not found"));
+
+        // Encrypt the message with RSA
         PublicKey receiverPublicKey = rsaService.getPublicKeyFromBytes(receiver.getPublicKey());
-        byte[] encryptedMessage = rsaService.encryptMessage(content, receiverPublicKey);
+        String encryptedMessage = rsaService.encryptMessage(receiverPublicKey, content);
 
+        // Create and save the message
         Message message = new Message();
         message.setSender(sender);
         message.setReceiver(receiver);
         message.setEncryptedMessage(encryptedMessage);
+        message.setTimestamp(LocalDateTime.now());
         messageRepository.save(message);
 
         return "redirect:/messages/inbox";
