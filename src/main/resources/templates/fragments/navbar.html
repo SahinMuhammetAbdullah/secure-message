@@ -1,0 +1,36 @@
+<div class="container" th:fragment="navbar">
+  <div class="d-md-flex justify-content-md-center navbar-container">
+    <nav class="navbar navbar-expand-lg navbar-expand-sm">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="navbar-ul">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="/messages/inbox"
+                ><i class="fa-solid fa-inbox fa-lg"></i> Gelen Kutusu</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/messages/sent"
+                ><i class="fa-solid fa-envelope-circle-check fa-lg"></i> Gönderilen Mesajlar</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/messages/send"
+                ><i class="fa-solid fa-paper-plane fa-lg"></i></i> Yeni Mesaj Gönder</a
+              >
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="/logout">
+                  <i class="fa-solid fa-right-from-bracket fa-lg"></i> <span th:text="${username}"></span>
+                </a>
+              </li>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+</div>

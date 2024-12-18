@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.navbar-container {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.2s;
+}
+
+#navbar-ul {
+    transition: all 0.2s;
+}
+
+#navbar-ul>li {
+    position: relative !important;
+    padding: 10px;
+    transition: all 0.2s;
+
+    a {
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.699);
+        font-size: 1.1rem;
+    }
+
+}
+
+#navbar-ul>li:hover,
+#navbar-ul>li:focus {
+    padding-bottom: 0;
+    transition: all 0.2s;
+
+}
+
+#navbar-ul>li::after {
+    content: "";
+    height: 4px;
+    border-radius: 5px 5px 5px 5px;
+    width: 85%;
+    background-color: #91C8E4;
+    position: absolute;
+    bottom: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s ease-in-out;
+}
+
+#navbar-ul>li:hover::after,
+#navbar-ul>li:focus::after {
+    opacity: 1;
+    transition: all 0.2s;
+}
+
+#navbar-ul>li:hover>a {
+    color: rgb(241, 246, 249);
+    transition: all 0.2s;
+}
+
+body {
+    background-color: #24273a;
+    font-family: "Poppins", sans-serif;
+}
+
+.table {
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.table th {
+    background-color: #ed8796;
+    color: rgb(241, 246, 249);
+    text-align: center;
+}
+.table td {
+    text-align: center;
+}
+
+
+.btn-primary {
+    background-color: #ed8796;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #ff677d;
+    color: white;
+}
+.btn-lg:hover {
+    color: white;
+}
+
+.header {
+    margin-top: 20px;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    color: #333;
+}
+
+.form-container {
+    margin-top: 50px;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.btn-secondary {
+    background-color: #dc8a78;
+    border: none;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+    text-decoration: none;
+}
+
+.btn-secondary:hover {
+    background-color: #dd7878;
+}
+
+a.btn {
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s ease;
+    font-weight: 500;
+}
+
+a.btn:hover {
+    color: #eeeeee;
+    transition: color 0.3s ease;
+}
+.reg:hover, .log:hover {
+    color: #ed8796 !important;
+    transition: color 0.3s ease;
+}
+
+input:focus {
+    box-shadow: 0 0 5px #ed8796 !important;
+    border-color: #ff677d !important;
+}
+
+input:focus-visible {
+    border-color: #ff677d !important;
+    box-shadow: 0 0 5px #ed8796 !important;
+}
