@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gelen Kutusu</title>
+    <title>Gönderilen Mesajlar</title>
     <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -46,7 +46,7 @@
     <div class="container">
       <!-- Header -->
       <div class="header text-center">
-        <h1>Gelen Kutusu</h1>
+        <h1>Gönderilen Mesajlar</h1>
       </div>
 
       <!-- Table -->
@@ -54,7 +54,7 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th scope="col">Gönderen</th>
+              <th scope="col">Alıcı</th>
               <th scope="col">Şifreli Mesaj</th>
               <th scope="col">Çözülmüş Mesaj</th>
               <th scope="col">Tarih</th>
@@ -62,15 +62,9 @@
           </thead>
           <tbody>
             <tr th:each="message, iterStat : ${messages}">
-              <td th:text="${message.sender.username}">Gönderen</td>
-              <td
-                th:text="${#strings.length(message.encryptedMessage) > 25 ? message.encryptedMessage.substring(0, 25) + '...' : message.encryptedMessage}"
-              >
-                Şifreli Mesaj
-              </td>
-              <td th:text="${decryptedMessages[iterStat.index]}">
-                Çözülmüş Mesaj
-              </td>
+              <td th:text="${message.receiver.username}">Alıcı</td>
+              <td th:text="${#strings.length(message.encryptedMessage) > 25 ? message.encryptedMessage.substring(0, 25) + '...' : message.encryptedMessage}">Şifreli Mesaj</td>
+              <td th:text="${decryptedMessages[iterStat.index]}">Çözülmüş Mesaj</td>
               <td th:text="${message.timestamp}">Tarih</td>
             </tr>
           </tbody>
@@ -79,9 +73,7 @@
 
       <!-- Send Message Button -->
       <div class="text-center mt-4">
-        <a href="/messages/send" class="btn btn-primary btn-lg"
-          >Yeni Mesaj Gönder</a
-        >
+        <a href="/messages/send" class="btn btn-primary btn-lg">Yeni Mesaj Gönder</a>
       </div>
     </div>
 

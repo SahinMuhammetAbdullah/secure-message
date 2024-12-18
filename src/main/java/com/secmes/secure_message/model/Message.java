@@ -19,7 +19,7 @@ public class Message {
     private User receiver;
 
     @Lob
-    private byte[] encryptedMessage;
+    private String encryptedMessage;
 
     private LocalDateTime timestamp;
 }
