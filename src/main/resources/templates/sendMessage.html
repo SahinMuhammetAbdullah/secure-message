@@ -19,6 +19,11 @@
       th:href="@{/css/fa-all-min.css}"
       rel="stylesheet"
     />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      th:href="@{/assets/favicon.png}"
+    />
   </head>
   <body>
     <div class="container">
@@ -30,14 +35,26 @@
             <label for="receiverUsername" class="form-label"
               >Alıcı Kullanıcı Adı:</label
             >
-            <select name="receiverUsername" id="receiverUsername">
-              <option value="" selected disabled>Alıcı Seçiniz</option>
-              <option
-                th:each="user : ${users}"
-                th:value="${user.username}"
-                th:text="${user.username}"
-              ></option>
-            </select>
+            <div class="d-flex justify-content-center">
+              <input
+                type="text"
+                id="filterInput"
+                class="form-control mb-2 w-50"
+                placeholder="Kullanıcı adı ara..."
+              />
+              <select
+                name="receiverUsername"
+                id="receiverUsername"
+                class="custom-select w-50"
+              >
+                <option value="" selected disabled>Alıcı Seçiniz</option>
+                <option
+                  th:each="user : ${users}"
+                  th:value="${user.username}"
+                  th:text="${user.username}"
+                ></option>
+              </select>
+            </div>
           </div>
           <div class="mb-3">
             <label for="content" class="form-label">Mesaj İçeriği:</label>
@@ -64,5 +81,22 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document
+        .getElementById("filterInput")
+        .addEventListener("input", function () {
+          const filter = this.value.toLowerCase();
+          const options = document.getElementById("receiverUsername").options;
+
+          for (let i = 0; i < options.length; i++) {
+            const option = options[i];
+            if (option.text.toLowerCase().includes(filter)) {
+              option.style.display = ""; // Seçeneği göster
+            } else {
+              option.style.display = "none"; // Seçeneği gizle
+            }
+          }
+        });
+    </script>
   </body>
 </html>

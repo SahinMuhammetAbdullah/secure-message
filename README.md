@@ -57,8 +57,9 @@ To get started with the Secure Message Application, follow these steps:
 
 1. Clone the repository.
 2. Set up the database and configure the connection in [`src/main/resources/application.properties`](src/main/resources/application.properties).
-3. Run the application using `mvn spring-boot:run`.
-4. Access the application at [`http://localhost:8080`](http://localhost:8080).
+3. Create certificates and keys with `openssl req -newkey rsa:2048 -x509 -sha256 -keyout server.key -out server.crt -days 365 -subj "/CN=self-signed-no-encrypt-key-cert" -nodes` and move created files to [`server/certs`](server/certs) folder.
+4. Run the application using `mvn spring-boot:run`.
+5. Access the application at [`http://localhost:8080`](http://localhost:8080).
 
 For more detailed instructions, refer to the documentation in the repository.
 

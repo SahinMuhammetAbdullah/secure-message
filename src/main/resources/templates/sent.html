@@ -19,11 +19,12 @@
       th:href="@{/css/fa-all-min.css}"
       rel="stylesheet"
     />
+    <link rel="shortcut icon" type="image/png" th:href="@{/assets/favicon.png}"/>
   </head>
   <body>
     <div th:replace="~{fragments/navbar :: navbar}"></div>
     <div class="container">
-      <div class="table-responsive">
+      <div class="table-responsive d-none d-md-block">
         <table class="table table-striped">
           <thead>
             <tr>
@@ -49,8 +50,10 @@
               <td>
                 <a
                   th:href="@{'/messages/delete/{id}'(id=${message.id})}"
-                  class="btn btn-primary btn-sm"
-                  ><i class="fa-solid fa-trash"></i> Sil</a
+                  class="btn btn-danger btn-sm"
+                  onclick="return confirm('Bu mesajı silmek istediğinizden emin misiniz?')"
+                >
+                  <i class="fa-solid fa-trash"></i> Sil</a
                 >
               </td>
             </tr>
@@ -58,8 +61,31 @@
         </table>
       </div>
 
+      <div class="d-block d-md-none">
+        <div th:each="message, iterStat : ${messages}" class="border rounded mb-3 p-2 bg-light">
+          <p><strong>Alıcı:</strong> <span th:text="${message.receiver.username}"></span></p>
+          <p>
+            <strong>Şifreli Mesaj:</strong>
+            <span
+              th:text="${#strings.length(message.encryptedMessage) > 25 ? message.encryptedMessage.substring(0, 25) + '...' : message.encryptedMessage}"
+            ></span>
+          </p>
+          <p><strong>Çözülmüş Mesaj:</strong> <span th:text="${decryptedMessages[iterStat.index]}"></span></p>
+          <p><strong>Tarih:</strong> <span th:text="${message.dateTime}"></span></p>
+          <div class="text-end">
+            <a
+              th:href="@{'/messages/delete/{id}'(id=${message.id})}"
+              class="btn btn-danger btn-sm"
+              onclick="return confirm('Bu mesajı silmek istediğinizden emin misiniz?')"
+            >
+              <i class="fa-solid fa-trash"></i> Sil
+            </a>
+          </div>
+        </div>
+      </div>
+
       <div class="text-center mt-4">
-        <a href="/messages/send" class="btn btn-primary btn-lg"
+        <a href="/messages/send" class="btn btn-primary btn-lg  w-md-auto"
           >Yeni Mesaj Gönder</a
         >
       </div>

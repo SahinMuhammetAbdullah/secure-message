@@ -2,7 +2,6 @@ package com.secmes.secure_message.controller;
 
 import java.security.PublicKey;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Date;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import jakarta.servlet.http.HttpServletRequest;
 
 import com.secmes.secure_message.model.Message;
 import com.secmes.secure_message.model.User;
@@ -38,6 +38,11 @@ public class MessageController {
 
     @Autowired
     private RSAService rsaService;
+
+    @GetMapping("/")
+    public String redirectInbox() {
+        return "redirect:/messages/inbox";
+    }
 
     @GetMapping("/inbox")
     public String getInbox(Model model) {
@@ -110,8 +115,20 @@ public class MessageController {
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteMessage(@PathVariable Long id) {
-        return "redirect:/messages/inbox";
+    public String deleteMessage(@PathVariable Long id, HttpServletRequest request) {
+        messageRepository.deleteById(id);
+        String referer = request.getHeader("Referer");
+
+        if (referer != null) {
+            if (referer.contains("/messages/inbox")) {
+                return "redirect:/messages/inbox";
+            } else if (referer.contains("/messages/sent")) {
+                return "redirect:/messages/sent";
+            }
+        }
+
+        // Default redirect if referer is not recognized
+        return "redirect:/messages/inbox"; // or another default page
     }
 
     @GetMapping("/sent")

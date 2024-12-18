@@ -1,0 +1,49 @@
+nohup: ignoring input
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.4.0)
+
+2024-12-18T22:04:41.367+03:00  INFO 58645 --- [secure-message] [           main] c.s.s.SecureMessageApplication           : Starting SecureMessageApplication v0.0.1-SNAPSHOT using Java 21.0.5 with PID 58645 (/home/alpeerkaraca/secure-message/target/secure-message-0.0.1-SNAPSHOT.jar started by root in /home/alpeerkaraca/secure-message)
+2024-12-18T22:04:41.381+03:00  INFO 58645 --- [secure-message] [           main] c.s.s.SecureMessageApplication           : No active profile set, falling back to 1 default profile: "default"
+2024-12-18T22:04:44.538+03:00  INFO 58645 --- [secure-message] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-18T22:04:44.699+03:00  INFO 58645 --- [secure-message] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 135 ms. Found 2 JPA repository interfaces.
+2024-12-18T22:04:48.083+03:00  INFO 58645 --- [secure-message] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 443 (https)
+2024-12-18T22:04:48.189+03:00  INFO 58645 --- [secure-message] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-18T22:04:48.190+03:00  INFO 58645 --- [secure-message] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2024-12-18T22:04:48.367+03:00  INFO 58645 --- [secure-message] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-18T22:04:48.383+03:00  INFO 58645 --- [secure-message] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 6804 ms
+2024-12-18T22:04:49.519+03:00  INFO 58645 --- [secure-message] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-12-18T22:04:50.077+03:00  INFO 58645 --- [secure-message] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.2.Final
+2024-12-18T22:04:50.279+03:00  INFO 58645 --- [secure-message] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-12-18T22:04:52.037+03:00  INFO 58645 --- [secure-message] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-18T22:04:52.243+03:00  INFO 58645 --- [secure-message] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-18T22:04:54.672+03:00  INFO 58645 --- [secure-message] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@632c3f55
+2024-12-18T22:04:54.680+03:00  INFO 58645 --- [secure-message] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-18T22:04:55.328+03:00  INFO 58645 --- [secure-message] [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.30
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2024-12-18T22:05:00.959+03:00  INFO 58645 --- [secure-message] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-12-18T22:05:01.813+03:00  INFO 58645 --- [secure-message] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-18T22:05:04.117+03:00  INFO 58645 --- [secure-message] [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2024-12-18T22:05:04.519+03:00  WARN 58645 --- [secure-message] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-18T22:05:08.772+03:00  INFO 58645 --- [secure-message] [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2024-12-18T22:05:08.775+03:00  INFO 58645 --- [secure-message] [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@a486851]]
+2024-12-18T22:05:08.776+03:00  INFO 58645 --- [secure-message] [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2024-12-18T22:05:09.419+03:00  INFO 58645 --- [secure-message] [           main] o.a.t.util.net.NioEndpoint.certificate   : Connector [https-jsse-nio-443], TLS virtual host [_default_], certificate type [UNDEFINED] configured from keystore [/root/.keystore] using alias [tomcat] with trust store [null]
+2024-12-18T22:05:09.505+03:00  INFO 58645 --- [secure-message] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 443 (https) with context path '/'
+2024-12-18T22:05:09.587+03:00  INFO 58645 --- [secure-message] [           main] c.s.s.SecureMessageApplication           : Started SecureMessageApplication in 29.707 seconds (process running for 31.368)
+2024-12-18T22:05:27.559+03:00  INFO 58645 --- [secure-message] [-nio-443-exec-5] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-18T22:05:27.559+03:00  INFO 58645 --- [secure-message] [-nio-443-exec-5] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-18T22:05:27.562+03:00  INFO 58645 --- [secure-message] [-nio-443-exec-5] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2024-12-18T22:06:08.765+03:00  INFO 58645 --- [secure-message] [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]

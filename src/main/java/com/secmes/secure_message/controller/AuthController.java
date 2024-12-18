@@ -27,6 +27,11 @@ public class AuthController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/")
+    public String redirectLogin() {
+        return "redirect:/auth/login";
+    }
+
     @PostMapping("/login")
     public Map<String, String> login(@RequestParam String username, @RequestParam String password) {
         Map<String, String> response = new HashMap<>();
