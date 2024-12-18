@@ -12,6 +12,7 @@ public class User {
 
     private String username;
 
+<<<<<<< Updated upstream
     @Column(nullable = false) // Boş olamaz
     private String password; // Şifrelenmiş formatta saklanacak
 
@@ -31,3 +32,21 @@ public class User {
     @Column(nullable = false)
     private boolean active = true; // Varsayılan olarak aktif
 }
+=======
+    @Column(nullable = false)
+    private String password; 
+
+    @Lob
+    private byte[] publicKey;
+
+    
+    @Lob
+    private byte[] privateKey; 
+
+    @Column(nullable = false, updatable = false)
+    private String createdDate; 
+
+    @Column(nullable = false)
+    private boolean active = true; 
+}
+>>>>>>> Stashed changes

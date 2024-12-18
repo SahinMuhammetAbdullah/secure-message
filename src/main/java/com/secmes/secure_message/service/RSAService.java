@@ -11,7 +11,6 @@ import java.util.Base64;
 public class RSAService {
 
     public String encryptMessage(PublicKey publicKey, String message) throws Exception {
-        // Encrypt the message
         Cipher cipher = Cipher.getInstance("RSA");
         cipher.init(Cipher.ENCRYPT_MODE, publicKey);
         byte[] encryptedBytes = cipher.doFinal(message.getBytes());
@@ -19,7 +18,6 @@ public class RSAService {
     }
 
     public String decryptMessage(String privateKeyStr, String encryptedMessage) throws Exception {
-        // Decode the Base64 encoded private key
         byte[] privateKeyBytes = Base64.getDecoder().decode(privateKeyStr);
         PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(privateKeyBytes);
         KeyFactory keyFactory = KeyFactory.getInstance("RSA");

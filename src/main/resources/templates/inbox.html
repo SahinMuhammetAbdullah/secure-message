@@ -23,7 +23,6 @@
   </head>
   <body>
     <div th:replace="~{fragments/navbar :: navbar}"></div>
-    <!-- Table -->
 
     <div class="container table-responsive">
       <table class="table table-striped">
@@ -60,14 +59,12 @@
       </table>
     </div>
 
-    <!-- Send Message Button -->
     <div class="text-center mt-4">
       <a href="/messages/send" class="btn btn-primary btn-lg"
         >Yeni Mesaj Gönder</a
       >
     </div>
 
-    <!-- Bootstrap JS -->
     <script
       src="../static/script/bootstrap.bundle.min.js"
       th:src="@{/script/bootstrap.bundle.min.js}"

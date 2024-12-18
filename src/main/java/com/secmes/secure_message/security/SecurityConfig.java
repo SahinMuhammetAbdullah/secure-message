@@ -20,21 +20,19 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable()) // Disable CSRF protection if not needed
+                .csrf(csrf -> csrf.disable()) 
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/login", "/auth/register", "/css/**", "/js/**").permitAll() // Allow access to login, register, and static resources
-                        .requestMatchers("/messages/inbox").authenticated() // Require authentication for /messages/inbox
-                        .anyRequest().authenticated() // Require authentication for all other requests
+                        .requestMatchers("/messages/inbox").authenticated()
                 )
                 .formLogin(form -> form
-                        .loginPage("/auth/login") // Custom login page
-                        .defaultSuccessUrl("/messages/inbox", true) // Redirect to /messages/inbox after successful login
-                        .permitAll() // Allow access to the login page
+                        .loginPage("/auth/login") 
+                        .defaultSuccessUrl("/messages/inbox", true) 
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")
-                        .logoutSuccessUrl("/auth/login?logout") // Redirect to login page after logout
-                        .permitAll() // Allow access to the logout page
+                        .logoutSuccessUrl("/auth/login?logout")
+                        .permitAll()
                 );
 
         return http.build();

@@ -112,11 +112,9 @@ public class MessageController {
 
     @GetMapping("/sent")
     public String getSentBox(Model model) {
-        // Get the logged-in user
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
 
-        // Get all messages for the logged-in user
         List<Message> messages = messageRepository.findAllBySenderUsername(username);
         List<String> decryptedMessages = new ArrayList<>();
 

@@ -41,22 +41,22 @@ public class AuthController {
 
     @GetMapping("/login")
     public String loginPage() {
-        return "login"; // "login.html" görünümünü döner
+        return "login";
     }
 
     @PostMapping("/register")
     public String register(@RequestParam String username, @RequestParam String password) {
         try {
             userService.registerUser(username, password);
-            return "redirect:/auth/login"; // Kayıttan sonra giriş sayfasına yönlendir
+            return "redirect:/auth/login";
         } catch (NoSuchAlgorithmException e) {
-            // Hata mesajı veya hata sayfası döndürebiliriz
-            return "error"; // Hata durumunu ele almak için bir sayfa dönebilirsiniz
+           
+            return "error"; 
         }
     }
 
     @GetMapping("/register")
     public String registerPage() {
-        return "register"; // "register.html" görünümünü döner
+        return "register";
     }
 }
